@@ -78,22 +78,6 @@ class Mob(pg.sprite.Sprite):
             dirvect.scale_to_length(self.speed)
         self.rect.move_ip(dirvect)
 
-        '''key = pg.key.get_pressed()
-        dist = 5
-        if key[pg.K_DOWN] or key[pg.K_s]:  # down key
-            self.rect.y -= dist  # move down
-        elif key[pg.K_UP] or key[pg.K_w]:  # up key
-            self.rect.y += dist  # move up
-        if key[pg.K_RIGHT] or key[pg.K_d]:  # right key
-            self.rect.x -= dist  # move right
-        elif key[pg.K_LEFT] or key[pg.K_a]:  # left key
-            self.rect.x += dist  # move left'''
-
-        '''if self.rect.top > height + 10 or self.rect.left < -25 or self.rect.right > width + 20:
-            self.rect.x = random.randrange(width - self.rect.width)
-            self.rect.y = (randrange(-100, -40), randrange(650, 670))[randrange(0, 2)]
-            self.speed = random.randrange(1, 4)'''
-
 
 class Rotator(pg.sprite.Sprite):
     def __init__(self, screen_rect):
