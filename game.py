@@ -35,7 +35,7 @@ font_name = pg.font.match_font('Bahnschrift', bold=True)
 
 def load_data():
     dir = path.dirname(__file__)
-    with open(path.join(dir, HS_File), 'r') as f:
+    with open(path.join(dir, HS_File), 'r+') as f:
         try:
             highscore = int(f.read())
         except:
