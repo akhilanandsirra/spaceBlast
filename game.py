@@ -8,6 +8,7 @@ import pygame as pg
 
 img_dir = path.join(path.dirname(__file__), 'img')
 snd_dir = path.join(path.dirname(__file__), 'snd')
+HS_File = "highscore.txt"
 
 pg.init()
 height = 650
@@ -30,6 +31,16 @@ running = True
 moving = False
 
 font_name = pg.font.match_font('Bahnschrift', bold=True)
+
+
+def load_data():
+    dir = path.dirname(__file__)
+    with open(path.join(dir, HS_File), 'r') as f:
+        try:
+            highscore = int(f.read())
+        except:
+            highscore = 0
+    return highscore
 
 
 def draw_text(surf, text, size, x, y, color):
@@ -210,18 +221,24 @@ def show_go_screen():
     waiting = True
     while waiting:
         screen.blit(background, [0, 0])
+        highscore = load_data()
+
         if start:
             draw_text(screen, "SPACE BLAST", 64, width / 2 + 3.5, height / 4 + 3.5, [23, 22, 20])
             draw_text(screen, "SPACE BLAST", 64, width / 2, height / 4, [255, 255, 255])
             draw_text(screen, "PRESS SPACEBAR TO BEGIN", 15, width / 2, height / 4 + 75, [255, 255, 255])
             draw_text(screen, "PRESS ESC TO EXIT", 13, width / 2, height / 1.5, [255, 255, 255])
+            draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 25, [255, 255, 255])
+
         else:
+            highscore = load_data()
             if pg.time.get_ticks() - hide_timer > 1000:
                 draw_text(screen, "GAME OVER", 64, width / 2 + 3.5, height / 4 + 75 + 3.5, [23, 22, 20])
                 draw_text(screen, "GAME OVER", 64, width / 2, height / 4 + 75, [255, 255, 255])
                 draw_text(screen, "PRESS SPACEBAR TO TRY AGAIN", 15, width / 2, height / 4 + 150, [255, 255, 255])
                 screen.blit(retry, [width / 2 - 15, height / 2 + 15])
                 draw_text(screen, "PRESS ESC TO EXIT", 13, width / 2, height / 2 + 75, [255, 255, 255])
+                draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 25, [255, 255, 255])
 
         clock.tick(60)
         if start:
@@ -308,7 +325,16 @@ while running:
         game_over = True
         moving = False
 
+    highscore = load_data()
     all_sprites.draw(screen)
     draw_text(screen, str(score), 22, width / 2, 600, [255, 255, 255])
+
+    if score > highscore:
+        highscore = score
+        draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 25, [255, 255, 255])
+        f = open("highscore.txt", "w+")
+        f.write(str(score))
+    else:
+        draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 25, [255, 255, 255])
     clock.tick(60)
     pg.display.update()
