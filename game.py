@@ -285,7 +285,7 @@ while running:
 
         if len(mobs) == 0:
             level += 1
-            for i in range(level * 4):
+            for i in range(level * 5):
                 m = Mob()
                 all_sprites.add(m)
                 mobs.add(m)
