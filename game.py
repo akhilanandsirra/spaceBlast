@@ -229,8 +229,10 @@ def show_go_screen():
             draw_text(screen, "PRESS SPACEBAR TO BEGIN", 15, width / 2, height / 4 + 75, [255, 255, 255])
             draw_text(screen, "PRESS ESC TO EXIT", 13, width / 2, height / 1.5, [255, 255, 255])
             draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 25, [255, 255, 255])
-            draw_text(screen, "USE ARROW KEYS OR W,S,A,D TO MOVE THE SPACESHIP", 13, width / 2, height * 3.25 / 4 - 25, [255, 255, 255])
-            draw_text(screen, "SPACESHIP POINTS IN THE DIRETION OF CURSOR", 13, width / 2, height * 3.25 / 4, [255, 255, 255])
+            draw_text(screen, "USE ARROW KEYS OR W,S,A,D TO MOVE THE SPACESHIP", 13, width / 2, height * 3.25 / 4 - 25,
+                      [255, 255, 255])
+            draw_text(screen, "SPACESHIP POINTS IN THE DIRETION OF CURSOR", 13, width / 2, height * 3.25 / 4,
+                      [255, 255, 255])
             draw_text(screen, "USE LEFT CLICK TO SHOOT BULLETS", 13, width / 2, height * 3.25 / 4 + 25, [255, 255, 255])
         else:
             highscore = load_data()
@@ -240,9 +242,14 @@ def show_go_screen():
                 draw_text(screen, "PRESS SPACEBAR TO TRY AGAIN", 15, width / 2, height / 4 + 150, [255, 255, 255])
                 screen.blit(retry, [width / 2 - 15, height / 2 + 15])
                 draw_text(screen, "PRESS ESC TO EXIT", 13, width / 2, height / 2 + 75, [255, 255, 255])
-                draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 25, [255, 255, 255])
+                draw_text(screen, "LEADERBOARDS", 22, width / 2, height * 3.25 / 4 - 50, [255, 255, 255])
+                draw_text(screen, "Akhil 999999", 13, width / 2, height * 3.25 / 4, [255, 255, 255])
+                draw_text(screen, "Goutham 99", 13, width / 2, height * 3.25 / 4 + 25, [255, 255, 255])
+                draw_text(screen, "Raghav 0", 13, width / 2, height * 3.25 / 4 + 50, [255, 255, 255])
+                draw_text(screen, "HIGH SCORE: " + str(highscore), 15, width - 65, 75, [255, 255, 255])
 
         clock.tick(60)
+
         if start:
             all_sprites.add(spaceship)
         all_sprites.update()
